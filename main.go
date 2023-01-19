@@ -1,15 +1,11 @@
 package main
 
-import (
-	"fmt"
+import "github.com/HHHMHA/celeritas"
 
-	"github.com/HHHMHA/celeritas"
-)
+type application struct {
+	App *celeritas.Celeritas
+}
 
 func main() {
-	result := celeritas.TestFunc(1, 1)
-	fmt.Println(result)
-
-	result = celeritas.TestFunc2(2, 1)
-	fmt.Println(result)
+	initApplication()
 }
