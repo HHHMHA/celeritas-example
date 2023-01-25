@@ -1,4 +1,0 @@
-# github.com/HHHMHA/celeritas v0.0.0-20221228181119-4000bbe11291 => ../celeritas
-## explicit; go 1.19
-github.com/HHHMHA/celeritas
-# github.com/HHHMHA/celeritas => ../celeritas

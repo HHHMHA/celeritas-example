@@ -15,12 +15,13 @@ func initApplication() *application {
 
 	cel := &celeritas.Celeritas{
 		AppName: "myapp",
-		Debug:   true,
 	}
 	err = cel.New(path)
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	cel.InfoLog.Println("Debug mode is: ", cel.Debug)
 
 	app := &application{
 		App: cel,
