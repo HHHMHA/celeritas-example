@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"myapp/handlers"
 	"os"
 
 	"github.com/HHHMHA/celeritas"
@@ -21,11 +22,16 @@ func initApplication() *application {
 		log.Fatal(err)
 	}
 
-	cel.InfoLog.Println("Debug mode is: ", cel.Debug)
-
-	app := &application{
+	myHandlers := &handlers.Handlers{
 		App: cel,
 	}
+
+	app := &application{
+		App:      cel,
+		Handlers: myHandlers,
+	}
+
+	app.App.Routes = app.routes()
 
 	return app
 }
