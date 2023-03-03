@@ -15,5 +15,9 @@ func (a *application) routes() *chi.Mux {
 	fileServer := http.FileServer(http.Dir("./public"))
 	a.App.Routes.Handle("/public/*", http.StripPrefix("/public", fileServer))
 
+	a.App.Routes.Get("/jet", func(w http.ResponseWriter, r *http.Request) {
+		a.App.Render.JetPage(w, r, "testjet", nil, nil)
+	})
+
 	return a.App.Routes
 }
