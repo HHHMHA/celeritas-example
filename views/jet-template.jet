@@ -1,7 +1,7 @@
 {{extends "./layouts/base.jet"}}
 
 {{block browserTitle()}}
-Welcome
+Jet Template
 {{end}}
 
 {{block css()}}
@@ -15,18 +15,8 @@ Welcome
                 <img src="/public/images/celeritas.jpg" class="mb-5" style="width: 100px;height:auto;">
                 <h1>Celeritas</h1>
                 <hr>
-                <small class="text-muted">Go build something awesome</small>
+                <small class="text-muted">This page is rendered using the Jet Template Engine</small>
             </div>
-        </div>
-
-        <hr>
-
-        <p>Things to try:</p>
-
-        <div class="list-group">
-            <a href="/go-page" class="list-group-item list-group-item-action">Render a GO Template</a>
-            <a href="/jet-page" class="list-group-item list-group-item-action">Render a Jet Template</a>
-            <a href="/sessions" class="list-group-item list-group-item-action">Try a session</a>
         </div>
     </div>
 {{end}}
