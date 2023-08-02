@@ -16,7 +16,7 @@ func (a *application) routes() *chi.Mux {
 	a.App.Routes.Get("/jet-page", a.Handlers.JetPage)
 	a.App.Routes.Get("/sessions", a.Handlers.SessionTest)
 	//a.App.Routes.Get("/sessions", a.Handlers.Home)
-	a.App.Routes.Get("/cteate-user", func(w http.ResponseWriter, r *http.Request) {
+	a.App.Routes.Get("/create-user", func(w http.ResponseWriter, r *http.Request) {
 		u := data.User{
 			FirstName: "Trevor",
 			LastName:  "Sawler",
