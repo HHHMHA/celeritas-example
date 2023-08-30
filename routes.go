@@ -5,6 +5,7 @@ import (
 	"github.com/go-chi/chi/v5"
 	"myapp/data"
 	"net/http"
+	"strconv"
 )
 
 func (a *application) routes() *chi.Mux {
@@ -32,6 +33,47 @@ func (a *application) routes() *chi.Mux {
 		}
 
 		fmt.Fprintf(w, "%d: %s", id, u.FirstName)
+	})
+
+	a.App.Routes.Get("/get-all-users", func(w http.ResponseWriter, r *http.Request) {
+		users, err := a.Models.Users.GetAll()
+		if err != nil {
+			a.App.ErrorLog.Println(err)
+			return
+		}
+
+		for _, x := range users {
+			fmt.Fprint(w, x.LastName)
+		}
+	})
+
+	a.App.Routes.Get("/get-user/{id}", func(w http.ResponseWriter, r *http.Request) {
+		id, _ := strconv.Atoi(chi.URLParam(r, "id"))
+		user, err := a.Models.Users.Get(id)
+		if err != nil {
+			a.App.ErrorLog.Println(err)
+			return
+		}
+
+		fmt.Fprint(w, user.LastName)
+	})
+
+	a.App.Routes.Get("/update-user/{id}", func(w http.ResponseWriter, r *http.Request) {
+		id, _ := strconv.Atoi(chi.URLParam(r, "id"))
+		user, err := a.Models.Users.Get(id)
+		if err != nil {
+			a.App.ErrorLog.Println(err)
+			return
+		}
+
+		user.LastName = a.App.RandomString(10)
+		err = user.Update(*user)
+		if err != nil {
+			a.App.ErrorLog.Println(err)
+			return
+		}
+
+		fmt.Fprint(w, user.LastName)
 	})
 
 	a.App.Routes.Get("/test-database", func(w http.ResponseWriter, r *http.Request) {
