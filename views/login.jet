@@ -1,0 +1,57 @@
+{{extends "./layouts.base.jet"}}
+
+{{block browserTitle()}}
+    Login
+{{end}}
+
+{{block css()}}{{end}}
+
+{{block pageContent()}}
+    <h2 class="mt-5 text-center">Login</h2>
+    <hr>
+    <form action="/users/login" method="post" id="login-form" class="d-block needs-validation" autocomplete="off"
+          novalidate>
+        <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" name="email" id="email" class="form-control" required autocomplete="email-new">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" id="password" class="form-control" required
+                   autocomplete="password-new">
+        </div>
+
+        <hr>
+
+        <a href="javascript:;;" class="btn btn-primary" onclick="val()">Login</a>
+        <p class="mt-2">
+            <small>
+                <a href="/users/forgot-password">Forgot Password?</a>
+            </small>
+        </p>
+    </form>
+
+    <div class="text-center">
+        <a href="/" class="btn btn-outline-secondary">Back...</a>
+    </div>
+
+    <p>&nbsp;</p>
+{{end}}
+
+{{block js()}}
+    <script>
+        function val() {
+            let form = document.getElementById("login-form");
+            if (form.checkValidity() === false) {
+                this.event.preventDefault();
+                this.event.stopPropagation();
+                form.classList.add("was-validated")
+                return;
+            }
+
+            form.classList.add("was-validated");
+            form.submit();
+        }
+    </script>
+{{end}}
