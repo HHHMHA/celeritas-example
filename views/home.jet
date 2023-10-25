@@ -16,6 +16,9 @@ Welcome
                 <h1>Celeritas</h1>
                 <hr>
                 <small class="text-muted">Go build something awesome</small>
+                {{ if .IsAuthenticated }}
+                    <small><a href="/users/logout">Logout</a></small>
+                {{end}}
             </div>
         </div>
 
@@ -27,6 +30,7 @@ Welcome
             <a href="/go-page" class="list-group-item list-group-item-action">Render a GO Template</a>
             <a href="/jet-page" class="list-group-item list-group-item-action">Render a Jet Template</a>
             <a href="/sessions" class="list-group-item list-group-item-action">Try a session</a>
+            <a href="/users/login" class="li st-group-item list-group-item-action">Login a user</a>
         </div>
     </div>
 {{end}}
