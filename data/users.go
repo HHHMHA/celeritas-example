@@ -81,7 +81,7 @@ func (u *User) Get(id int) (*User, error) {
 func (u *User) getToken() (*Token, error) {
 	var token Token
 	collection := upper.Collection(token.Table())
-	res := collection.Find(up.Cond{"user_id": u.ID, "expiry <": time.Now()}).OrderBy("created_at desc")
+	res := collection.Find(up.Cond{"user_id": u.ID, "expiry >": time.Now()}).OrderBy("created_at desc")
 	err := res.One(&token)
 
 	if err != nil {
